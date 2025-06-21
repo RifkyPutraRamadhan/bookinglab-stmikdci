@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-header">
+        <h1>Tentang Aplikasi Booking Lab STMIK DCI</h1>
+        <p class="subtitle">Sistem Penjadwalan Praktikum Berbasis Algoritma Sistem Operasi</p>
+    </div>
+
+    <div class="about-section">
+        <h2><i class="fas fa-info-circle"></i> Tentang Proyek Ini</h2>
+        <p>Aplikasi ini dikembangkan sebagai bagian dari pemenuhan tugas mata kuliah <strong>Sistem Operasi Lanjut</strong> di Kampus <strong>STMIK DCI</strong>. Tujuan utama proyek ini adalah untuk mengimplementasikan konsep penjadwalan proses dalam sistem operasi ke dalam sebuah aplikasi nyata berupa sistem booking laboratorium komputer.</p>
+        <p>Melalui aplikasi ini, pengguna dapat melakukan simulasi pemesanan waktu praktikum di laboratorium, di mana sistem akan mengatur penjadwalannya menggunakan berbagai algoritma penjadwalan yang dipelajari dalam teori, seperti FIFO, SJF, dan Round Robin.</p>
+    </div>
+
+    <div class="about-section">
+        <h2><i class="fas fa-brain"></i> Algoritma Penjadwalan yang Diterapkan</h2>
+        
+        <div class="algorithm-card">
+            <h3>1. FIFO (First In First Out)</h3>
+            <p>Algoritma paling sederhana dimana proses yang datang pertama akan dilayani pertama. Diterapkan dalam konteks booking lab, mahasiswa yang melakukan booking paling awal akan mendapatkan jadwal pertama.</p>
+        </div>
+        
+        <div class="algorithm-card">
+            <h3>2. SJF (Shortest Job First)</h3>
+            <p>Algoritma yang memprioritaskan proses dengan waktu eksekusi terpendek. Dalam sistem booking lab, mahasiswa yang memesan durasi praktikum paling singkat akan dijadwalkan lebih dulu.</p>
+        </div>
+        
+        <div class="algorithm-card">
+            <h3>3. RR (Round Robin)</h3>
+            <p>Algoritma yang memberikan slot waktu (time quantum) yang sama untuk setiap proses secara bergiliran. Dalam konteks praktikum, setiap kelompok mahasiswa mendapatkan waktu praktikum yang sama secara bergantian.</p>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2><i class="fas fa-user-graduate"></i> Tentang Pengembang</h2>
+        <div class="developer-info">
+            <p>Proyek ini dikerjakan secara individu oleh:</p>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <i class="fas fa-user-circle fa-3x"></i>
+                    <div>
+                        <h3>Rifky Putra Ramadhan</h3>
+                        <p>NIM: 11240025</p>
+                        <p>Program Studi: Teknik Informatika</p>
+                    </div>
+                </div>
+                <p class="profile-desc">Sebagai mahasiswa STMIK DCI yang tertarik dalam pengembangan sistem dan pemrograman, proyek ini menjadi sarana untuk menerapkan konsep teoritis sistem operasi ke dalam bentuk aplikasi simulasi penjadwalan yang interaktif dan edukatif.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2><i class="fas fa-book"></i> Tujuan Pembelajaran</h2>
+        <ul class="learning-goals">
+            <li><i class="fas fa-check-circle"></i> Memahami implementasi nyata algoritma penjadwalan proses</li>
+            <li><i class="fas fa-check-circle"></i> Menganalisis perbedaan karakteristik masing-masing algoritma</li>
+            <li><i class="fas fa-check-circle"></i> Mengembangkan sistem yang dapat menghitung turnaround time dan waiting time</li>
+            <li><i class="fas fa-check-circle"></i> Membuat visualisasi proses penjadwalan melalui Gantt Chart</li>
+            <li><i class="fas fa-check-circle"></i> Menerapkan konsep sistem operasi dalam penyelesaian masalah nyata</li>
+        </ul>
+    </div>
+
+    <div class="about-section">
+        <h2><i class="fas fa-code"></i> Teknologi Pembangunan Website</h2>
+        <p>Aplikasi Booking Lab STMIK DCI ini dibangun dengan menggunakan berbagai teknologi modern berikut:</p>
+        
+        <div class="tech-stack">
+            <div class="tech-card">
+                <div class="tech-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="tech-details">
+                    <h3>Backend</h3>
+                    <ul>
+                        <li><strong>Python</strong> - Bahasa pemrograman utama</li>
+                        <li><strong>Flask</strong> - Framework web mikro</li>
+                        <li><strong>Werkzeug</strong> - Untuk sistem autentikasi</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <div class="tech-details">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li><strong>HTML5</strong> - Struktur dasar website</li>
+                        <li><strong>CSS3</strong> - Styling dan layout</li>
+                        <li><strong>JavaScript</strong> - Interaktivitas</li>
+                        <li><strong>Chart.js</strong> - Visualisasi Gantt Chart</li>
+                        <li><strong>Font Awesome</strong> - Ikon modern</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tech-card">
+                <div class="tech-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="tech-details">
+                    <h3>Infrastruktur</h3>
+                    <ul>
+                        <li><strong>Jinja2</strong> - Templating engine</li>
+                        <li><strong>Git</strong> - Version control system</li>
+                        <li><strong>Flask-Session</strong> - Manajemen sesi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="development-approach">
+            <h3><i class="fas fa-laptop-code"></i> Pendekatan Pengembangan</h3>
+            <p>Aplikasi dikembangkan dengan metodologi berikut:</p>
+            <ul>
+                <li><strong>Responsive Design</strong> - Tampilan yang optimal di semua perangkat</li>
+                <li><strong>Modular Code</strong> - Kode terstruktur dan mudah dikembangkan</li>
+                <li><strong>User Experience</strong> - Antarmuka yang intuitif dan mudah digunakan</li>
+                <li><strong>Security</strong> - Sistem login dengan password hashing</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2><i class="fas fa-lightbulb"></i> Manfaat Aplikasi</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-clock"></i>
+                <h3>Efisiensi Waktu</h3>
+                <p>Membantu laboran dalam mengatur jadwal praktikum secara otomatis dan optimal</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-balance-scale"></i>
+                <h3>Adil dan Transparan</h3>
+                <p>Sistem yang objektif berdasarkan algoritma tertentu, bukan preferensi individu</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Analisis Performa</h3>
+                <p>Menyediakan data statistik untuk evaluasi sistem penjadwalan</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Media Pembelajaran</h3>
+                <p>Memvisualisasikan konsep teori sistem operasi secara interaktif</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

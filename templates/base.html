@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookingLab STMIK-DCI{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand" aria-label="Homepage">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="navbar-logo">
+                BookingLab STMIK-DCI
+            </a>
+            <button class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="navbar-menu">
+                <div class="nav-links">
+                    <a href="{{ url_for('index') }}" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="{{ url_for('about') }}" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a>
+                </div>
+                <div class="user-info">
+                    {% if 'username' in session %}
+                        <span>
+                            <i class="fas fa-user"></i> {{ session.name }} ({{ session.nim }})
+                            <a href="{{ url_for('logout') }}" class="nav-link logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </span>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-copyright">2025 © BookingLab STMIK-DCI</p>
+            <p class="footer-credit">Dibuat oleh Rifky Putra Ramadhan - 11240025</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-gantt@1.1.0/dist/chartjs-plugin-gantt.min.js"></script>
+    <script>
+        const scheduledData = {{ scheduled_data | default([]) | tojson | safe }};
+        document.addEventListener('DOMContentLoaded', () => {
+            if (Array.isArray(scheduledData)) {
+                renderGanttChart(scheduledData);
+            } else {
+                console.warn('scheduledData is not array');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="forms-container">
+    <div class="form-section">
+        <h2>Tambah Pemesanan Baru</h2>
+        <form action="/add_booking" method="POST">
+            <div class="form-group">
+                <label for="name">NIM:</label>
+                <input type="text" id="nim" name="nim" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Durasi (menit):</label>
+                <input type="number" id="duration" name="duration" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="arrival_time">Waktu Kedatangan (menit ke-):</label>
+                <input type="number" id="arrival_time" name="arrival_time" min="0" required>
+            </div>
+            <button type="submit"><i class="fa-solid fa-plus"></i> Tambah Pemesanan</button>
+        </form>
+    </div>
+
+    <div class="form-section">
+        <h2>Jadwalkan Pemesanan</h2>
+        <form action="/schedule" method="POST">
+            <div class="form-group">
+                <label for="algorithm">Algoritma Penjadwalan:</label>
+                <select id="algorithm" name="algorithm" required>
+                    <option value="fifo">FIFO (First In First Out)</option>
+                    <option value="sjf">SJF (Shortest Job First)</option>
+                    <option value="rr">RR (Round Robin)</option>
+                </select>
+            </div>
+            <div class="form-group" id="quantum-group" style="display: none;">
+                <label for="time_quantum">Quantum Waktu (untuk Round Robin):</label>
+                <input type="number" id="time_quantum" name="time_quantum" min="1" value="1">
+            </div>
+            <button type="submit"><i class="fa-solid fa-play"></i> Jalankan Penjadwalan</button>
+        </form>
+        <form action="/clear_bookings" method="POST" class="clear-form">
+            <button type="submit"><i class="fa-solid fa-trash"></i> Hapus Semua Pemesanan</button>
+        </form>
+    </div>
+</div>
+
+<div class="bookings-section">
+    <h2>Daftar Pemesanan Saat Ini</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Durasi</th>
+                <th>Waktu Kedatangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.nim }}</td>
+                <td>{{ booking.name }}</td>
+                <td>{{ booking.duration }} menit</td>
+                <td>{{ booking.arrival_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if scheduled %}
+<div class="results-section">
+    <h2>Hasil Penjadwalan ({{ algorithm|upper }})</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Durasi</th>
+                <th>Kedatangan</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Turnaround Time</th>
+                <th>Waiting Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in scheduled %}
+            <tr>
+                <td>{{ booking.id }}</td>
+                <td>{{ booking.nim }}</td>
+                <td>{{ booking.name }}</td>
+                <td>{{ booking.duration }} menit</td>
+                <td>{{ booking.arrival_time }}</td>
+                <td>{{ booking.start_time }}</td>
+                <td>{{ booking.end_time }}</td>
+                <td>{{ booking.end_time - booking.arrival_time }} menit</td>
+                <td>{{ booking.start_time - booking.arrival_time }} menit</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if scheduled_data %}
+<div class="gantt-wrapper">
+    <h3>Simulasi Gantt Chart</h3>
+    <div id="ganttGrid" class="gantt-container"></div>
+</div>
+{% endif %}
+
+<div class="stats">
+    <h3>Statistik</h3>
+    <div class="chart-container">
+        <canvas id="statChart"></canvas>
+    </div>
+    <div class="stats-numbers">
+        <p>Rata-rata Turnaround Time: <span class="stat-value">{{ (scheduled|sum(attribute='end_time') - scheduled|sum(attribute='arrival_time')) / scheduled|length }} menit</span></p>
+        <p>Rata-rata Waiting Time: <span class="stat-value">{{ (scheduled|sum(attribute='start_time') - scheduled|sum(attribute='arrival_time')) / scheduled|length }} menit</span></p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
