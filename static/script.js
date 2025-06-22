@@ -114,7 +114,7 @@ function renderGanttChart(data) {
         block.className = "gantt-block";
         const left = item.start * (unitWidth + unitSpacing);
         const width = item.duration * unitWidth + (item.duration - 1) * unitSpacing;
-        block.style.left = `${left}px`;
+        block.style.left = `${item.start * 20}px`;
         block.style.width = `${width}px`;
         block.style.backgroundColor = getColorById(item.id);
         block.textContent = `${item.name}`;
