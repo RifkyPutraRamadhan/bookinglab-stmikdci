@@ -107,7 +107,7 @@ function renderGanttChart(data) {
     ganttGrid.innerHTML = "";
 
     const unitWidth = 5;
-    const unitSpacing = 35;
+    const unitSpacing = 30;
 
     data.forEach(item => {
         const block = document.createElement("div");
