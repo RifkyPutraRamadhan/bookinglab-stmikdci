@@ -18,9 +18,9 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px;
 }
 
 h1, h2, h3 {
@@ -356,7 +356,7 @@ tr:hover {
     position: relative;
     z-index: 1;
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.95);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
